@@ -23,7 +23,7 @@ class calculation():
         self.mat3=empty((self.n-1,self.n-1))
         for i in range(self.n):
             for j in range(i+1,self.n,1):
-                print("enter the y",i,j)
+                print("enter the y",i+1,j+1)
                 self.mat1[i][j]=self.mat1[j][i]=float(input())
         #print(self.mat1)
 #****************************************************************************************
@@ -46,14 +46,18 @@ class calculation():
     def power(self):                                   #only for power of transmission lines
                                                        #this function has n*n pow transmission line matrix and n*1 pow trans line matrix
                                                         #it only returns n*1 trans_line matrix
-        self.pow1 = empty((self.n, self.n))                          #creating power transmission line for input
+        self.pow1 = empty((self.n, self.n))
+        print("if there is no connection between the buses then put the value of power flow zero")                                               #creating power transmission line for input
         #print(self.pow1)
         # self.pow22 = empty((self.n, self.n))
         # print(self.pow22)
         for i in range(self.n):
             for j in range(self.n):
-                print("enter the power of p", i, j, "transmission line:")
-                self.pow1[i][j] = float(input())
+                if i==j:
+                    self.pow1[i][i]=0
+                else:
+                    print("enter the power of p", i+1, j+1, "transmission line:")
+                    self.pow1[i][j] = float(input())
         #print(self.pow1)
 #**************************************************************************************
         self.pow22 = empty((self.n, self.n))                        #creating empty matrix for transmission line calculation
